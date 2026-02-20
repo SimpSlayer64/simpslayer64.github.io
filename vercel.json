@@ -1,5 +1,7 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
+  "functions": {
+    "api/leaderboard.ts": {
+      "runtime": "nodejs20.x"
+    }
   }
+}

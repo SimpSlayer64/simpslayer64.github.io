@@ -318,10 +318,16 @@ export function AdminPage() {
             Database Controls
           </h2>
           <button
-            onClick={() => {
+            onClick={async () => {
               if (confirm("Clear ALL leaderboard data?")) {
-                localStorage.removeItem("chemistry-escape-leaderboard");
-                alert("Leaderboard cleared.");
+                try {
+                  const { clearLeaderboard } = await import("../lib/api");
+                  await clearLeaderboard();
+                  alert("Leaderboard cleared.");
+                } catch (error) {
+                  console.error("Failed to clear leaderboard:", error);
+                  alert("Failed to clear leaderboard. Check console.");
+                }
               }
             }}
             className="px-4 py-2 bg-red-50 text-red-600 rounded-xl font-bold text-sm hover:bg-red-100 border border-red-100"

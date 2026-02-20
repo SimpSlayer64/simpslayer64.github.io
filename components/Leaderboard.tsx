@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Trophy, ArrowLeft, RotateCcw, Medal } from 'lucide-react';
+import { Trophy, RotateCcw, Medal } from 'lucide-react';
+import { getLeaderboard } from '../lib/api';
 
 interface Entry {
   group: string;
@@ -16,14 +17,20 @@ interface LeaderboardProps {
 
 export function Leaderboard({ onNewStart }: LeaderboardProps) {
   const [entries, setEntries] = useState<Entry[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem('chemistry-escape-leaderboard');
-    if (saved) {
-      setEntries(JSON.parse(saved));
-    } else {
-      setEntries([]);
+    async function loadLeaderboard() {
+      try {
+        const data = await getLeaderboard();
+        setEntries(data);
+      } catch (error) {
+        console.error('Failed to load leaderboard:', error);
+      } finally {
+        setLoading(false);
+      }
     }
+    loadLeaderboard();
   }, []);
 
   return (
@@ -59,7 +66,13 @@ export function Leaderboard({ onNewStart }: LeaderboardProps) {
             </tr>
           </thead>
           <tbody>
-            {entries.length > 0 ? entries.map((entry, i) => (
+            {loading ? (
+              <tr>
+                <td colSpan={4} className="px-8 py-20 text-center text-slate-400">
+                  Loading leaderboard...
+                </td>
+              </tr>
+            ) : entries.length > 0 ? entries.map((entry, i) => (
               <motion.tr 
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}

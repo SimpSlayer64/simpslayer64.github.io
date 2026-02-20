@@ -26,50 +26,50 @@ export interface P1Set {
   expectedCode: string; // 4 digits
 }
 
-// Set A: Current live (Zn, AgNO3, H2SO4, C3H8, KClO3 decoy)
+// Set A: Current live (Zn, AgNO3, H2SO4, C3H8, KClO3 decoy) - SCRAMBLED ORDER
 const p1SetA: P1Set = {
   equations: [
-    { parts: ["Zn", "+", "CuSO₄", "→", "ZnSO₄", "+", "Cu"], type: "Single Replacement", productMetal: "ZnSO₄", coeff: "1" },
-    { parts: ["AgNO₃", "+", "NaCl", "→", "AgCl", "+", "NaNO₃"], type: "Double Replacement", productMetal: "AgCl", coeff: "1" },
-    { parts: ["H₂SO₄", "+", "NaOH", "→", "Na₂SO₄", "+", "H₂O"], type: "Acid–Base", productMetal: "Na₂SO₄", coeff: "1" },
     { parts: ["C₃H₈", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "4" },
     { parts: ["KClO₃", "→", "KCl", "+", "O₂"], type: "Decomposition", productMetal: "KCl", coeff: "2", decoy: true },
+    { parts: ["Zn", "+", "CuSO₄", "→", "ZnSO₄", "+", "Cu"], type: "Single Replacement", productMetal: "ZnSO₄", coeff: "1" },
+    { parts: ["H₂SO₄", "+", "NaOH", "→", "Na₂SO₄", "+", "H₂O"], type: "Acid–Base", productMetal: "Na₂SO₄", coeff: "1" },
+    { parts: ["AgNO₃", "+", "NaCl", "→", "AgCl", "+", "NaNO₃"], type: "Double Replacement", productMetal: "AgCl", coeff: "1" },
   ],
   expectedCode: "1114", // Single(1) Double(1) AcidBase(1) Combustion(4)
 };
 
-// Set B: Fe, BaCl2, HCl, CH4, CaCO3 decoy
+// Set B: Fe, BaCl2, HCl, CH4, CaCO3 decoy - SCRAMBLED ORDER
 const p1SetB: P1Set = {
   equations: [
-    { parts: ["Fe", "+", "CuCl₂", "→", "FeCl₂", "+", "Cu"], type: "Single Replacement", productMetal: "FeCl₂", coeff: "1" },
-    { parts: ["BaCl₂", "+", "Na₂SO₄", "→", "BaSO₄", "+", "NaCl"], type: "Double Replacement", productMetal: "BaSO₄", coeff: "1" },
-    { parts: ["HCl", "+", "KOH", "→", "KCl", "+", "H₂O"], type: "Acid–Base", productMetal: "KCl", coeff: "1" },
-    { parts: ["CH₄", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "2" },
     { parts: ["CaCO₃", "→", "CaO", "+", "CO₂"], type: "Decomposition", productMetal: "CaO", coeff: "1", decoy: true },
+    { parts: ["CH₄", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "2" },
+    { parts: ["BaCl₂", "+", "Na₂SO₄", "→", "BaSO₄", "+", "NaCl"], type: "Double Replacement", productMetal: "BaSO₄", coeff: "1" },
+    { parts: ["Fe", "+", "CuCl₂", "→", "FeCl₂", "+", "Cu"], type: "Single Replacement", productMetal: "FeCl₂", coeff: "1" },
+    { parts: ["HCl", "+", "KOH", "→", "KCl", "+", "H₂O"], type: "Acid–Base", productMetal: "KCl", coeff: "1" },
   ],
   expectedCode: "1112", // CH4+2O2→CO2+2H2O, H2O coeff=2
 };
 
-// Set C: Mg, Pb(NO3)2, HNO3, C2H6, 2H2+O2 decoy
+// Set C: Mg, Pb(NO3)2, HNO3, C2H6, 2H2+O2 decoy - SCRAMBLED ORDER
 const p1SetC: P1Set = {
   equations: [
-    { parts: ["Mg", "+", "HCl", "→", "MgCl₂", "+", "H₂"], type: "Single Replacement", productMetal: "MgCl₂", coeff: "1" },
-    { parts: ["Pb(NO₃)₂", "+", "KI", "→", "PbI₂", "+", "KNO₃"], type: "Double Replacement", productMetal: "PbI₂", coeff: "1" },
     { parts: ["HNO₃", "+", "NaOH", "→", "NaNO₃", "+", "H₂O"], type: "Acid–Base", productMetal: "NaNO₃", coeff: "1" },
     { parts: ["C₂H₆", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "6" },
+    { parts: ["Mg", "+", "HCl", "→", "MgCl₂", "+", "H₂"], type: "Single Replacement", productMetal: "MgCl₂", coeff: "1" },
     { parts: ["2H₂", "+", "O₂", "→", "2H₂O"], type: "Decomposition", productMetal: null, coeff: "2", decoy: true },
+    { parts: ["Pb(NO₃)₂", "+", "KI", "→", "PbI₂", "+", "KNO₃"], type: "Double Replacement", productMetal: "PbI₂", coeff: "1" },
   ],
   expectedCode: "1116", // 2C2H6+7O2→4CO2+6H2O, H2O coeff=6
 };
 
-// Set D: Zn+H2SO4, AgNO3+KBr, H3PO4+NaOH, C4H10, KClO3 decoy
+// Set D: Zn+H2SO4, AgNO3+KBr, H3PO4+NaOH, C4H10, KClO3 decoy - SCRAMBLED ORDER
 const p1SetD: P1Set = {
   equations: [
-    { parts: ["Zn", "+", "H₂SO₄", "→", "ZnSO₄", "+", "H₂"], type: "Single Replacement", productMetal: "ZnSO₄", coeff: "1" },
     { parts: ["AgNO₃", "+", "KBr", "→", "AgBr", "+", "KNO₃"], type: "Double Replacement", productMetal: "AgBr", coeff: "1" },
-    { parts: ["H₃PO₄", "+", "NaOH", "→", "Na₃PO₄", "+", "H₂O"], type: "Acid–Base", productMetal: "Na₃PO₄", coeff: "1" },
-    { parts: ["C₄H₁₀", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "10" },
     { parts: ["2KClO₃", "→", "2KCl", "+", "3O₂"], type: "Decomposition", productMetal: "KCl", coeff: "2", decoy: true },
+    { parts: ["C₄H₁₀", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "10" },
+    { parts: ["Zn", "+", "H₂SO₄", "→", "ZnSO₄", "+", "H₂"], type: "Single Replacement", productMetal: "ZnSO₄", coeff: "1" },
+    { parts: ["H₃PO₄", "+", "NaOH", "→", "Na₃PO₄", "+", "H₂O"], type: "Acid–Base", productMetal: "Na₃PO₄", coeff: "1" },
   ],
   expectedCode: "1110", // 2C4H10+13O2→8CO2+10H2O, H2O coeff=10, use last digit for 4-digit code
 };

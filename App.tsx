@@ -95,7 +95,7 @@ export default function App() {
     setCurrentStep('puzzle1');
   };
 
-  const handleLeaderboardSubmit = () => {
+  const handleLeaderboardSubmit = async () => {
     const newEntry = {
       group: groupInfo.name,
       time: formatTime(elapsedTime),
@@ -104,9 +104,13 @@ export default function App() {
       setId: setId ?? 'A',
     };
     
-    const existing = JSON.parse(localStorage.getItem('chemistry-escape-leaderboard') || '[]');
-    const updated = [...existing, newEntry].sort((a, b) => a.seconds - b.seconds);
-    localStorage.setItem('chemistry-escape-leaderboard', JSON.stringify(updated));
+    try {
+      const { submitToLeaderboard } = await import('./lib/api');
+      await submitToLeaderboard(newEntry);
+    } catch (error) {
+      console.error('Failed to submit to leaderboard:', error);
+      // Fallback handled in api.ts
+    }
     
     clearSession();
     setCurrentStep('leaderboard');

@@ -5,7 +5,7 @@
 
 import type { SetId } from "./puzzles";
 
-export const ADMIN_PIN = "1016"; // Change this in one place for admin access
+export const ADMIN_PIN = "1010"; // Change this in one place for admin access
 
 export interface SessionData {
   groupName: string;
