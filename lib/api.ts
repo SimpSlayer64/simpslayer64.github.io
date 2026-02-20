@@ -49,13 +49,13 @@ export async function submitToLeaderboard(entry: LeaderboardEntry): Promise<void
     localStorage.setItem('chemistry-escape-leaderboard', JSON.stringify(entries));
   } catch (error) {
     console.error('Error submitting to leaderboard:', error);
-    // Fallback to localStorage
+    // Fallback to localStorage so the button still "works" and we navigate to leaderboard
     const local = localStorage.getItem('chemistry-escape-leaderboard') || '[]';
     const entries = JSON.parse(local);
     entries.push(entry);
     entries.sort((a: LeaderboardEntry, b: LeaderboardEntry) => a.seconds - b.seconds);
     localStorage.setItem('chemistry-escape-leaderboard', JSON.stringify(entries));
-    throw error;
+    // Don't rethrow — entry was saved locally, UI should proceed to leaderboard
   }
 }
 

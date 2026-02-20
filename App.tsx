@@ -20,6 +20,7 @@ import { Poster } from './components/Poster';
 import { CountdownOverlay } from './components/CountdownOverlay';
 import { getSession, setSession, clearSession, updateSessionProgress } from './lib/session';
 import { assignSetIdForNewGroup } from './lib/admin';
+import { submitToLeaderboard } from './lib/api';
 import type { SetId } from './lib/puzzles';
 
 export type Step = 'landing' | 'setup' | 'countdown' | 'puzzle1' | 'puzzle2' | 'puzzle3' | 'final' | 'success' | 'leaderboard' | 'poster';
@@ -33,6 +34,7 @@ export default function App() {
   const [showPoster, setShowPoster] = useState(false);
   const [setId, setSetId] = useState<SetId | null>(null);
   const [debugOverlay, setDebugOverlay] = useState(false);
+  const [submittingLeaderboard, setSubmittingLeaderboard] = useState(false);
 
   // Restore from session on mount (e.g. after refresh)
   useEffect(() => {
@@ -96,6 +98,8 @@ export default function App() {
   };
 
   const handleLeaderboardSubmit = async () => {
+    if (submittingLeaderboard) return;
+    setSubmittingLeaderboard(true);
     const newEntry = {
       group: groupInfo.name,
       time: formatTime(elapsedTime),
@@ -103,15 +107,12 @@ export default function App() {
       date: new Date().toISOString().split('T')[0],
       setId: setId ?? 'A',
     };
-    
     try {
-      const { submitToLeaderboard } = await import('./lib/api');
       await submitToLeaderboard(newEntry);
     } catch (error) {
       console.error('Failed to submit to leaderboard:', error);
-      // Fallback handled in api.ts
     }
-    
+    setSubmittingLeaderboard(false);
     clearSession();
     setCurrentStep('leaderboard');
   };
@@ -277,10 +278,11 @@ export default function App() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={handleLeaderboardSubmit}
-                  className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
+                  disabled={submittingLeaderboard}
+                  className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <Trophy className="w-5 h-5" />
-                  Submit to Leaderboard
+                  <Trophy className="w-5 h-5 shrink-0" />
+                  {submittingLeaderboard ? 'Submitting…' : 'Submit to Leaderboard'}
                 </button>
                 <button 
                   onClick={() => window.location.reload()}
