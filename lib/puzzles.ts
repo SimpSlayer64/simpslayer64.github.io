@@ -56,7 +56,7 @@ const p1SetC: P1Set = {
     { parts: ["HNO₃", "+", "NaOH", "→", "NaNO₃", "+", "H₂O"], type: "Acid–Base", productMetal: "NaNO₃", coeff: "1" },
     { parts: ["C₂H₆", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "6" },
     { parts: ["Mg", "+", "HCl", "→", "MgCl₂", "+", "H₂"], type: "Single Replacement", productMetal: "MgCl₂", coeff: "1" },
-    { parts: ["2H₂", "+", "O₂", "→", "2H₂O"], type: "Decomposition", productMetal: null, coeff: "2", decoy: true },
+    { parts: ["NaCl", "+", "Na", "→", "Cl₂"], type: "Decomposition", productMetal: null, coeff: "2", decoy: true },
     { parts: ["Pb(NO₃)₂", "+", "KI", "→", "PbI₂", "+", "KNO₃"], type: "Double Replacement", productMetal: "PbI₂", coeff: "1" },
   ],
   expectedCode: "1116", // 2C2H6+7O2→4CO2+6H2O, H2O coeff=6
@@ -67,11 +67,11 @@ const p1SetD: P1Set = {
   equations: [
     { parts: ["AgNO₃", "+", "KBr", "→", "AgBr", "+", "KNO₃"], type: "Double Replacement", productMetal: "AgBr", coeff: "1" },
     { parts: ["2KClO₃", "→", "2KCl", "+", "3O₂"], type: "Decomposition", productMetal: "KCl", coeff: "2", decoy: true },
-    { parts: ["C₄H₁₀", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "10" },
+    { parts: ["C₆H₁₂", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "6" },
     { parts: ["Zn", "+", "H₂SO₄", "→", "ZnSO₄", "+", "H₂"], type: "Single Replacement", productMetal: "ZnSO₄", coeff: "1" },
     { parts: ["H₃PO₄", "+", "NaOH", "→", "Na₃PO₄", "+", "H₂O"], type: "Acid–Base", productMetal: "Na₃PO₄", coeff: "1" },
   ],
-  expectedCode: "1110", // 2C4H10+13O2→8CO2+10H2O, H2O coeff=10, use last digit for 4-digit code
+  expectedCode: "1116", // 2C4H10+13O2→8CO2+10H2O, H2O coeff=10, use last digit for 4-digit code
 };
 
 export const PUZZLE1_SETS: Record<SetId, P1Set> = { A: p1SetA, B: p1SetB, C: p1SetC, D: p1SetD };
