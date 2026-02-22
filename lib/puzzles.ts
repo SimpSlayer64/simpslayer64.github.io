@@ -56,7 +56,7 @@ const p1SetC: P1Set = {
     { parts: ["HNO₃", "+", "NaOH", "→", "NaNO₃", "+", "H₂O"], type: "Acid–Base", productMetal: "NaNO₃", coeff: "1" },
     { parts: ["C₂H₆", "+", "O₂", "→", "CO₂", "+", "H₂O"], type: "Combustion", productMetal: null, coeff: "6" },
     { parts: ["Mg", "+", "HCl", "→", "MgCl₂", "+", "H₂"], type: "Single Replacement", productMetal: "MgCl₂", coeff: "1" },
-    { parts: ["NaCl", "+", "Na", "→", "Cl₂"], type: "Decomposition", productMetal: null, coeff: "2", decoy: true },
+    { parts: ["NaCl", "→", "Na", "+", "Cl₂"], type: "Decomposition", productMetal: null, coeff: "2", decoy: true },
     { parts: ["Pb(NO₃)₂", "+", "KI", "→", "PbI₂", "+", "KNO₃"], type: "Double Replacement", productMetal: "PbI₂", coeff: "1" },
   ],
   expectedCode: "1116", // 2C2H6+7O2→4CO2+6H2O, H2O coeff=6
@@ -71,7 +71,7 @@ const p1SetD: P1Set = {
     { parts: ["Zn", "+", "H₂SO₄", "→", "ZnSO₄", "+", "H₂"], type: "Single Replacement", productMetal: "ZnSO₄", coeff: "1" },
     { parts: ["H₃PO₄", "+", "NaOH", "→", "Na₃PO₄", "+", "H₂O"], type: "Acid–Base", productMetal: "Na₃PO₄", coeff: "1" },
   ],
-  expectedCode: "1116", // 2C4H10+13O2→8CO2+10H2O, H2O coeff=10, use last digit for 4-digit code
+  expectedCode: "1116", // C6H12+9O2→6CO2+6H2O, H2O coeff=6, use last digit for 4-digit code
 };
 
 export const PUZZLE1_SETS: Record<SetId, P1Set> = { A: p1SetA, B: p1SetB, C: p1SetC, D: p1SetD };
@@ -125,7 +125,7 @@ const p2SetC: P2Set = {
   elements: [
     { symbol: "Li", name: "Lithium", atomic: 3, charge: 1, type: "metal" },
     { symbol: "Be", name: "Beryllium", atomic: 4, charge: 2, type: "metal" },
-    { symbol: "B", name: "Boron", atomic: 5, charge: 3, type: "metal" },
+    { symbol: "B", name: "Boron", atomic: 5, charge: 3, type: "metalloid" },
     { symbol: "O", name: "Oxygen", atomic: 8, charge: -2, type: "non-metal" },
     { symbol: "Ne", name: "Neon", atomic: 10, charge: 0, type: "noble-gas" },
   ],
