@@ -42,11 +42,11 @@ export function Leaderboard({ onNewStart }: LeaderboardProps) {
           </div>
           <div>
             <h1 className="text-4xl font-black italic uppercase tracking-tighter">Leaderboard</h1>
-            <p className="text-slate-500 text-sm">Top Stabilization Units of the Week</p>
+            <p className="text-slate-500 text-sm">Local Device Records</p>
           </div>
         </div>
 
-        <button 
+        <button
           onClick={onNewStart}
           className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10"
         >
@@ -73,11 +73,11 @@ export function Leaderboard({ onNewStart }: LeaderboardProps) {
                 </td>
               </tr>
             ) : entries.length > 0 ? entries.map((entry, i) => (
-              <motion.tr 
+              <motion.tr
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                key={i} 
+                key={i}
                 className={`border-b border-slate-50 last:border-0 hover:bg-slate-50/50 transition-colors ${i < 3 ? 'bg-yellow-50/30' : ''}`}
               >
                 <td className="px-8 py-6">

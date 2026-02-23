@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { useState } from 'react';
 import { Lock, Unlock, ShieldAlert } from 'lucide-react';
 
 interface FinalCodeProps {
@@ -18,7 +17,8 @@ export function FinalCode({ puzzleCodes, onComplete }: FinalCodeProps) {
   const handleUnlock = () => {
     setStatus('checking');
     setTimeout(() => {
-      if (inputValue === correctCode) {
+      const strippedInput = inputValue.replace(/\D/g, '');
+      if (strippedInput === correctCode) {
         setStatus('success');
         setTimeout(onComplete, 1000);
       } else {
@@ -47,26 +47,38 @@ export function FinalCode({ puzzleCodes, onComplete }: FinalCodeProps) {
       <div className="bg-slate-50 p-10 rounded-[40px] border border-slate-100 shadow-sm space-y-8">
         <div className="space-y-4">
           <label className="text-xs font-bold uppercase tracking-widest text-slate-400 block text-center">Master Access Key</label>
-          <input 
+          <input
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value.replace(/\D/g, ''))}
-            className={`w-full py-8 text-4xl font-mono font-black text-center tracking-[0.2em] bg-white border-4 rounded-3xl outline-none transition-all ${
-              status === 'error' ? 'border-red-500 animate-shake' : 
-              status === 'success' ? 'border-green-500' : 
-              'border-slate-100 focus:border-slate-900'
-            }`}
-            placeholder="••••••••••"
+            onChange={(e) => {
+              // Strip non-digits
+              const unformatted = e.target.value.replace(/\D/g, '');
+              // We only want up to 11 digits
+              const trimmed = unformatted.slice(0, 11);
+              // Format XXXX-XXXX-XXX
+              let formatted = trimmed;
+              if (trimmed.length > 4) {
+                formatted = trimmed.slice(0, 4) + '-' + trimmed.slice(4);
+              }
+              if (trimmed.length > 8) {
+                formatted = formatted.slice(0, 9) + '-' + trimmed.slice(8);
+              }
+              setInputValue(formatted);
+            }}
+            className={`w-full py-8 text-4xl font-mono font-black text-center tracking-[0.2em] bg-white border-4 rounded-3xl outline-none transition-all ${status === 'error' ? 'border-red-500 animate-shake' :
+              status === 'success' ? 'border-green-500' :
+                'border-slate-100 focus:border-slate-900'
+              }`}
+            placeholder="••••-••••-•••"
           />
         </div>
 
-        <button 
+        <button
           onClick={handleUnlock}
           disabled={status === 'checking'}
-          className={`w-full py-6 rounded-2xl font-black text-xl shadow-2xl transition-all active:scale-95 ${
-            status === 'success' ? 'bg-green-600 text-white' : 
-            status === 'error' ? 'bg-red-600 text-white' : 
-            'bg-slate-900 text-white hover:bg-slate-800'
-          }`}
+          className={`w-full py-6 rounded-2xl font-black text-xl shadow-2xl transition-all active:scale-95 ${status === 'success' ? 'bg-green-600 text-white' :
+            status === 'error' ? 'bg-red-600 text-white' :
+              'bg-slate-900 text-white hover:bg-slate-800'
+            }`}
         >
           {status === 'checking' ? 'DECRYPTING...' : 'UNLOCK SYSTEM'}
         </button>

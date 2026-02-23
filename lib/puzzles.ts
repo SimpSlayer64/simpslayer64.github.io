@@ -178,46 +178,46 @@ const p3SetA: P3Set = {
   expectedCode: "341",
 };
 
-// Set B: Oxygen=1, SaltWater=2, HydrogenGas=3, EnergyInput=4
-// Combustion→Oxygen(1), AcidBase→SaltWater(2), Single→HydrogenGas(3), Decomp→EnergyInput(4)
-// Order Single(3)→AcidBase(2)→Combustion(1) = 321
+// Set B: Oxygen=4, SaltWater=1, HydrogenGas=2, EnergyInput=3
+// Combustion→Oxygen(4), AcidBase→SaltWater(1), Single→HydrogenGas(2), Decomp→EnergyInput(3)
+// Order Single(2)→AcidBase(1)→Combustion(4) = 214
 const p3SetB: P3Set = {
   conditions: [
-    { id: "oxygen", name: "Needs oxygen", val: 1 },
-    { id: "saltwater", name: "Produces salt + water", val: 2 },
-    { id: "hydrogen", name: "Produces hydrogen gas", val: 3 },
-    { id: "energy", name: "Needs energy input", val: 4 },
+    { id: "oxygen", name: "Needs oxygen", val: 4 },
+    { id: "saltwater", name: "Produces salt + water", val: 1 },
+    { id: "hydrogen", name: "Produces hydrogen gas", val: 2 },
+    { id: "energy", name: "Needs energy input", val: 3 },
   ],
   correctMatches: { comb: "oxygen", acid: "saltwater", single: "hydrogen", decomp: "energy" },
-  expectedCode: "321",
+  expectedCode: "214",
 };
 
-// Set C: EnergyRelease=1, Neutralization=2, Bubbles=3, SimplerSubstances=4
-// Combustion→EnergyRelease(1), AcidBase→Neutralization(2), Single→Bubbles(3), Decomp→SimplerSubstances(4)
-// Order Single(3)→AcidBase(2)→Combustion(1) = 321
+// Set C: EnergyRelease=3, Neutralization=4, Bubbles=1, SimplerSubstances=2
+// Combustion→EnergyRelease(3), AcidBase→Neutralization(4), Single→Bubbles(1), Decomp→SimplerSubstances(2)
+// Order Single(1)→AcidBase(4)→Combustion(3) = 143
 const p3SetC: P3Set = {
   conditions: [
-    { id: "energyrel", name: "Rapid energy release", val: 1 },
-    { id: "neutral", name: "Neutralization", val: 2 },
-    { id: "bubbles", name: "Gas bubbles observed", val: 3 },
-    { id: "simpler", name: "Breaks into simpler substances", val: 4 },
+    { id: "energyrel", name: "Rapid energy release", val: 3 },
+    { id: "neutral", name: "Neutralization", val: 4 },
+    { id: "bubbles", name: "Gas bubbles observed", val: 1 },
+    { id: "simpler", name: "Breaks into simpler substances", val: 2 },
   ],
   correctMatches: { comb: "energyrel", acid: "neutral", single: "bubbles", decomp: "simpler" },
-  expectedCode: "321",
+  expectedCode: "143",
 };
 
-// Set D: Flame=1, pH7=2, Displacement=3, Splits=4
-// Combustion→Flame(1), AcidBase→pH7(2), Single→Displacement(3), Decomp→Splits(4)
-// Order Single(3)→AcidBase(2)→Combustion(1) = 321
+// Set D: Flame=2, pH7=3, Displacement=4, Splits=1
+// Combustion→Flame(2), AcidBase→pH7(3), Single→Displacement(4), Decomp→Splits(1)
+// Order Single(4)→AcidBase(3)→Combustion(2) = 432
 const p3SetD: P3Set = {
   conditions: [
-    { id: "flame", name: "Flame present", val: 1 },
-    { id: "ph7", name: "pH moves toward 7", val: 2 },
-    { id: "displace", name: "Metal displaces another", val: 3 },
-    { id: "splits", name: "One reactant forms two products", val: 4 },
+    { id: "flame", name: "Flame present", val: 2 },
+    { id: "ph7", name: "pH moves toward 7", val: 3 },
+    { id: "displace", name: "Metal displaces another", val: 4 },
+    { id: "splits", name: "One reactant forms two products", val: 1 },
   ],
   correctMatches: { comb: "flame", acid: "ph7", single: "displace", decomp: "splits" },
-  expectedCode: "321",
+  expectedCode: "432",
 };
 
 export const PUZZLE3_SETS: Record<SetId, P3Set> = { A: p3SetA, B: p3SetB, C: p3SetC, D: p3SetD };
