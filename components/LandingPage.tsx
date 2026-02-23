@@ -25,19 +25,19 @@ export function LandingPage({ onStart, onViewLeaderboard }: LandingPageProps) {
           <AlertTriangle className="w-4 h-4 text-amber-500" />
           Ever done grade 10 chemistry with your life on the line?
         </div>
-        
+
         <h1 className="text-6xl sm:text-8xl font-black italic tracking-tighter text-slate-900 mb-6 uppercase">
           Stabilize <br />
           <span className="text-outline">The Lab</span>
         </h1>
-        
+
         <p className="text-xl sm:text-2xl text-slate-500 mb-12 max-w-xl mx-auto leading-relaxed">
           Science 10 Chemistry Escape Challenge. <br />
           Use the knowledge you have from Science 10 to save the lab.
         </p>
 
         <div className="flex flex-col items-center gap-4">
-          <button 
+          <button
             onClick={onStart}
             className="group relative px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center gap-3"
           >
@@ -45,12 +45,12 @@ export function LandingPage({ onStart, onViewLeaderboard }: LandingPageProps) {
             START CHALLENGE
             <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform skew-x-12" />
           </button>
-          
+
           <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">
             Note: The 10-minute stabilization timer begins after group entry.
           </p>
-          
-          <button 
+
+          <button
             onClick={onViewLeaderboard}
             className="mt-2 px-6 py-2 bg-white border border-slate-200 text-slate-500 rounded-xl font-semibold text-sm transition-all hover:bg-slate-50 hover:text-slate-900 flex items-center gap-2"
           >
@@ -70,7 +70,7 @@ export function LandingPage({ onStart, onViewLeaderboard }: LandingPageProps) {
           </div>
           <div className="col-span-2 sm:col-span-1">
             <p className="text-xs uppercase tracking-widest text-slate-400 mb-1">Subject</p>
-            <p className="font-bold text-lg">Science 10</p>
+            <p className="font-bold text-lg">Chemistry</p>
           </div>
         </div>
       </motion.div>
